@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 class Student {
     private String fullName;
-    private int yearOfAdmission;
+    private int admissionYear;
     private String address;
     private String phone;
     private int course;
     private String faculty;
 
-    public Student(String fullName, int yearOfAdmission, String address, String phone, int course, String faculty) {
+    public Student(String fullName, int admissionYear, String address, String phone, int course, String faculty) {
         this.fullName = fullName;
-        this.yearOfAdmission = yearOfAdmission;
+        this.admissionYear = admissionYear;
         this.address = address;
         this.phone = phone;
         this.course = course;
@@ -23,8 +23,12 @@ class Student {
         return fullName;
     }
 
-    public int getYearOfAdmission() {
-        return yearOfAdmission;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setAdmissionYear(int admissionYear) {
+        this.admissionYear = admissionYear;
     }
 
     public String getAddress() {
@@ -35,8 +39,20 @@ class Student {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setCourse(int course) {
+        this.course = course;
+    }
+
     public String getFaculty() {
         return faculty;
+    }
+
+    public int getAdmissionYear() {
+        return admissionYear;
     }
 }
 
@@ -46,48 +62,47 @@ public class Main {
         Student[] students = new Student[3];
 
         for (int i = 0; i < students.length; i++) {
-            System.out.println("Ââåäèòå äàííûå äëÿ ñòóäåíòà " + (i + 1));
-            System.out.print("ÔÈÎ: ");
-            String name = scanner.nextLine();
-            System.out.print("Ãîä ïîñòóïëåíèÿ: ");
-            int year = scanner.nextInt();
-            scanner.nextLine(); // ÷òîáû ñúåñòü \n
-            System.out.print("Àäðåñ: ");
+            System.out.println("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð´Ð»Ñ ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð° #" + (i + 1));
+            System.out.print("Ð¤Ð˜Ðž: ");
+            String fullName = scanner.nextLine();
+
+            System.out.print("Ð“Ð¾Ð´ Ð¿Ð¾ÑÑ‚ÑƒÐ¿Ð»ÐµÐ½Ð¸Ñ: ");
+            int year = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("ÐÐ´Ñ€ÐµÑ: ");
             String address = scanner.nextLine();
-            System.out.print("Òåëåôîí: ");
+
+            System.out.print("Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½: ");
             String phone = scanner.nextLine();
-            System.out.print("Êóðñ: ");
-            int course = scanner.nextInt();
-            scanner.nextLine();
-            System.out.print("Ôàêóëüòåò: ");
+
+            System.out.print("ÐšÑƒÑ€Ñ: ");
+            int course = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Ð¤Ð°ÐºÑƒÐ»ÑŒÑ‚ÐµÑ‚: ");
             String faculty = scanner.nextLine();
 
-            students[i] = new Student(name, year, address, phone, course, faculty);
+            students[i] = new Student(fullName, year, address, phone, course, faculty);
         }
 
-        System.out.println("\nÔÈÎ âñåõ ñòóäåíòîâ:");
+        System.out.println("\nÐ°) Ð¤Ð˜Ðž Ð²ÑÐµÑ… ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð²:");
         for (Student s : students) {
             System.out.println(s.getFullName());
         }
 
-        System.out.print("\nÂâåäèòå ôàêóëüòåò äëÿ ïîèñêà: ");
-        String targetFaculty = scanner.nextLine();
-        System.out.println("Ñòóäåíòû ôàêóëüòåòà " + targetFaculty + ":");
+        System.out.print("\nÐ±) Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ„Ð°ÐºÑƒÐ»ÑŒÑ‚ÐµÑ‚ Ð´Ð»Ñ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð°Ñ†Ð¸Ð¸: ");
+        String searchFaculty = scanner.nextLine();
         for (Student s : students) {
-            if (s.getFaculty().equalsIgnoreCase(targetFaculty)) {
+            if (s.getFaculty().equalsIgnoreCase(searchFaculty)) {
                 System.out.println(s.getFullName());
             }
         }
 
-        System.out.print("\nÂâåäèòå ãîä äëÿ ôèëüòðà: ");
-        int targetYear = scanner.nextInt();
-        System.out.println("Ñòóäåíòû, ïîñòóïèâøèå ïîñëå " + targetYear + ":");
+        System.out.print("\nÐ²) Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð³Ð¾Ð´ Ð´Ð»Ñ Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð°Ñ†Ð¸Ð¸ (Ð¿Ð¾ÑÑ‚ÑƒÐ¿Ð¸Ð²ÑˆÐ¸Ðµ Ð¿Ð¾ÑÐ»Ðµ): ");
+        int yearFilter = Integer.parseInt(scanner.nextLine());
         for (Student s : students) {
-            if (s.getYearOfAdmission() > targetYear) {
+            if (s.getAdmissionYear() > yearFilter) {
                 System.out.println(s.getFullName());
             }
         }
-
-        scanner.close();
     }
 }
